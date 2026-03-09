@@ -48,6 +48,9 @@ const Navbar = () => {
         <Link to="/register" className="btn">
           Register
         </Link>
+        <Link to="/login" className="btn">
+          Login
+        </Link>
       </div>
     </div>
   );

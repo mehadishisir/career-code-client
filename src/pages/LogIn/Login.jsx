@@ -1,11 +1,11 @@
-import React, { use, useContext } from "react";
-import regLottie from "../../assets/Login Leady.json";
-import Lottie from "lottie-react";
+import React, { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import Loginlottie from "../../assets/Login.json";
+import Lottie from "lottie-react";
 
-const Register = () => {
-  const { createUser } = useContext(AuthContext);
-  const handleRegister = (e) => {
+const Login = () => {
+  const { signIn } = useContext(AuthContext);
+  const handleLogin = (e) => {
     e.preventDefault();
 
     const form = e.target;
@@ -13,7 +13,7 @@ const Register = () => {
     const password = form.password.value;
 
     console.log(email, password);
-    createUser(email, password)
+    signIn(email, password)
       .then((result) => {
         const user = result.user;
         console.log(user);
@@ -22,13 +22,12 @@ const Register = () => {
         console.error(error);
       });
   };
-
   return (
     <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="text-center lg:text-left">
           <Lottie
-            animationData={regLottie}
+            animationData={Loginlottie}
             loop={true}
             style={{ width: 350 }}
           />
@@ -36,9 +35,9 @@ const Register = () => {
 
         <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
           <div className="card-body">
-            <h1 className="text-5xl font-bold">Register now!</h1>
+            <h1 className="text-5xl font-bold">Login now!</h1>
 
-            <form onSubmit={handleRegister} className="fieldset">
+            <form onSubmit={handleLogin} className="fieldset">
               <label className="label">Email</label>
               <input
                 type="email"
@@ -59,7 +58,7 @@ const Register = () => {
                 <a className="link link-hover">Forgot password?</a>
               </div>
 
-              <button className="btn btn-neutral mt-4">Register</button>
+              <button className="btn btn-neutral mt-4">Login</button>
             </form>
           </div>
         </div>
@@ -68,4 +67,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;

@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router";
+import { Link, useLoaderData } from "react-router";
 
 const JobDetails = () => {
   const job = useLoaderData();
@@ -17,6 +17,7 @@ const JobDetails = () => {
     responsibilities,
     hr_name,
     hr_email,
+    _id,
   } = job;
 
   return (
@@ -67,7 +68,9 @@ const JobDetails = () => {
               <strong>Email:</strong> {hr_email}
             </p>
 
-            <button className="btn btn-primary mt-4">Apply Now</button>
+            <Link to={`/jobApply/${_id}`}>
+              <button className="btn btn-primary mt-4">Apply Now</button>
+            </Link>
           </div>
         </div>
       </div>

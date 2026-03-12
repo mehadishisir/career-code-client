@@ -36,6 +36,8 @@ const router = createBrowserRouter([
             <ApplyJob></ApplyJob>
           </PrivateRoute>
         ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/jobs/${params.id}`),
       },
     ],
   },

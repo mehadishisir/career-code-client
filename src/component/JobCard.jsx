@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router";
 
 const JobCard = ({ job }) => {
   const {
@@ -41,7 +42,9 @@ const JobCard = ({ job }) => {
 
         {/* buttons */}
         <div className="card-actions justify-end mt-4">
-          <button className="btn btn-outline btn-primary">View Details</button>
+          <Link to={`/jobs/${_id}`} className="btn btn-outline btn-primary">
+            View Details
+          </Link>
         </div>
       </div>
     </div>

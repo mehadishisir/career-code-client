@@ -1,8 +1,12 @@
-import React from "react";
+import React, { use } from "react";
 import { useLoaderData } from "react-router";
+import { AuthContext } from "../context/AuthContext";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const ApplyJob = () => {
   const job = useLoaderData();
+  const { user } = use(AuthContext);
 
   const { title, company, company_logo, hr_email } = job;
 
@@ -10,14 +14,12 @@ const ApplyJob = () => {
     e.preventDefault();
 
     const form = e.target;
-    const name = form.name.value;
-    const email = form.email.value;
+
     const linkedin = form.linkedin.value;
     const resume = form.resume.value;
 
     const application = {
-      name,
-      email,
+      email: user.email,
       linkedin,
       resume,
       job_title: title,
@@ -26,18 +28,20 @@ const ApplyJob = () => {
     };
 
     console.log(application);
-
-    fetch("http://localhost:5000/job-applications", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(application),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        alert("Application Submitted Successfully");
+    axios
+      .post("http://localhost:5000/applications", application)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.insertedId) {
+          Swal.fire({
+            title: "Apply Done",
+            icon: "success",
+            draggable: true,
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
 
@@ -64,14 +68,12 @@ const ApplyJob = () => {
               placeholder="LinkedIn Profile"
               className="input input-bordered w-full"
             />
-
             <input
               type="text"
               name="resume"
               placeholder="Resume Link (Google Drive / Portfolio)"
               className="input input-bordered w-full"
             />
-
             <button className="btn btn-primary w-full">
               Submit Application
             </button>

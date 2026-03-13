@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React, { use, useContext } from "react";
 import { useLoaderData } from "react-router";
 import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
@@ -6,7 +6,8 @@ import Swal from "sweetalert2";
 
 const ApplyJob = () => {
   const job = useLoaderData();
-  const { user } = use(AuthContext);
+  console.log(job);
+  const { user } = useContext(AuthContext);
 
   const { title, company, company_logo, hr_email } = job;
 

@@ -15,6 +15,10 @@ const Navbar = () => {
           <NavLink to="/myApplications">My Applications</NavLink>{" "}
         </li>
       ) : null}
+      <li>
+        {" "}
+        <NavLink to="/add-jobs">Add Jobs</NavLink>{" "}
+      </li>
     </>
   );
   const handleLogOut = () => {

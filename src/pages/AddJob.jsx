@@ -8,8 +8,11 @@ const AddJob = () => {
     const form = e.target;
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
-    const { min, max, currency, ...newdata } = data;
+    const { min, max, currency, responsibilities, requirements, ...newdata } =
+      data;
     newdata.salaryRange = { min, max, currency };
+    newdata.responsibilities = responsibilities.split(",").map((r) => r.trim());
+    newdata.requirements = requirements.split(",").map((req) => req.trim());
     console.log(newdata);
   };
 

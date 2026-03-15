@@ -8,7 +8,9 @@ const AddJob = () => {
     const form = e.target;
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
-    console.log(data);
+    const { min, max, currency, ...newdata } = data;
+    newdata.salaryRange = { min, max, currency };
+    console.log(newdata);
   };
 
   return (

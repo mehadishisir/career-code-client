@@ -13,7 +13,24 @@ const AddJob = () => {
     newdata.salaryRange = { min, max, currency };
     newdata.responsibilities = responsibilities.split(",").map((r) => r.trim());
     newdata.requirements = requirements.split(",").map((req) => req.trim());
+    newdata.status = "active";
     console.log(newdata);
+    // send data to db
+    axios
+      .post("http://localhost:5000/jobs", newdata)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.insertedId) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your work has been saved",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      })
+      .catch((error) => console.log(error));
   };
 
   return (

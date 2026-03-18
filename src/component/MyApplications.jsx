@@ -14,7 +14,7 @@ const MyApplications = () => {
         setApplications(res.data);
       });
   }, [user.email]);
-
+  //
   return (
     <div className="max-w-5xl mx-auto mt-10">
       <h2 className="text-3xl font-bold mb-6">My Applications</h2>

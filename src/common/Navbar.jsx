@@ -11,9 +11,16 @@ const Navbar = () => {
         <NavLink to="/">Home</NavLink>
       </li>
       {user ? (
-        <li>
-          <NavLink to="/myApplications">My Applications</NavLink>{" "}
-        </li>
+        <>
+          <li>
+            <NavLink to="/myApplications">My Applications</NavLink>{" "}
+          </li>
+
+          <li>
+            {" "}
+            <NavLink to="/myPostedJob">My Posted job</NavLink>{" "}
+          </li>
+        </>
       ) : null}
       <li>
         {" "}
